@@ -29,7 +29,6 @@ def show
 end
 
 def edit
-  @prototype = Prototype.find(params[:id])
 end
 
 def update
@@ -44,7 +43,7 @@ end
 def destroy
   prototype = Prototype.find(params[:id])
   prototype.destroy
-  render :index
+  redirect_to root_path
 end
 
  private
@@ -54,7 +53,7 @@ end
 
 def move_to_index
   @prototype = Prototype.find(params[:id])
-  unless current_user == @prototype_user
+  unless current_user == @prototype.user
     redirect_to action: :index
   end
 end
