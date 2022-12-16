@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-  before_action :authenticate_user!, only: [:destroy, :create, :edit]
+  before_action :authenticate_user!, only: [:destroy, :create, :edit, :new]
   before_action :move_to_index, only: [:destroy, :edit]
 
 
@@ -34,7 +34,7 @@ end
 def update
   @prototype = Prototype.find(params[:id])
   if @prototype.update(prototype_params)
-    redirect_to root_path
+    redirect_to prototype_path
   else
     render :edit
   end
